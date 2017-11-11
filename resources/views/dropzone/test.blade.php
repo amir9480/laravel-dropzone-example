@@ -38,7 +38,6 @@
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
                             success:function(file,response){
-                                console.log(response.filename);
                                 $(file.previewElement).attr('server-file',response.filename);
                                 $("#testform").append('<input name="uploads[]" type="hidden" value="'+response.filename+'">');
                             },
@@ -72,6 +71,8 @@
                             dictRemoveFileConfirmation: "برای حزف فایل مطمئن هستید؟",
                             dictMaxFilesExceeded: "شما فایل بیشتری نمیتوانید آپلود کنید"
                         });
+    myDropzone.options.addedfile.call(myDropzone, mockFile);
+    myDropzone.options.thumbnail.call(myDropzone, mockFile, "http://localhost/test/drop/uploads/banner2.jpg");
                     });
 
                 </script>
