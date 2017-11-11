@@ -21,7 +21,7 @@ class DropZoneController extends Controller
     {
         if(!$request->hasFile('image'))
             return abort(404);
-        $uf = sha1(time()).'.'.$request->file('image')->extension();
+        $uf = sha1(time(). uniqid()).'.'.$request->file('image')->extension();
         $request->file('image')->move(public_path('uploads'), $uf);
         return response()->json([
             'success' => true,

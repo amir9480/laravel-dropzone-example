@@ -31,17 +31,18 @@
                             url: "{{ url('/fu') }}",
                             paramName: "image",
                             maxFilesize:1,
-                            maxFiles:4,
+                            maxFiles:6,
+                            parallelUploads:1,
                             addRemoveLinks: true,
                             headers:{
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
                             success:function(file,response){
+                                console.log(response.filename);
                                 $(file.previewElement).attr('server-file',response.filename);
                                 $("#testform").append('<input name="uploads[]" type="hidden" value="'+response.filename+'">');
                             },
                             error:function(file,response){
-                                console.log(response);
                             },
                             removedfile:function(file){
                                 $.ajax({
@@ -55,10 +56,8 @@
                                     },
                                     success:function( rs ){
                                         $(file.previewElement).remove();
-                                        console.log(rs.responseJSON);
                                     },
                                     error:function( rs ){
-                                        console.log(rs.responseJSON);
                                     }
                                 });
                             },
