@@ -12,6 +12,11 @@ class DropZoneController extends Controller
         return view('dropzone.test');
     }
     
+    public function submit( Request $request )
+    {
+        dd($request->all());
+    }
+    
     public function fileUpload(Request $request)
     {
         if(!$request->hasFile('image'))

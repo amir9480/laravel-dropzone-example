@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
     <body>
-        <form action="test" method="post"  enctype="multipart/form-data">
+        <form id="testform" action="test" method="post"  enctype="multipart/form-data">
             <input type="text" name="title"><br>
             {{ csrf_field() }}
             <div id="dz" class="dropzone">
@@ -38,6 +38,7 @@
                             },
                             success:function(file,response){
                                 $(file.previewElement).attr('server-file',response.filename);
+                                $("#testform").append('<input name="uploads[]" type="hidden" value="'+response.filename+'">');
                             },
                             error:function(file,response){
                                 console.log(response);

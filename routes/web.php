@@ -16,5 +16,6 @@ Route::get('/', function () {
 });
 
 Route::get('/test', 'DropZoneController@show');
+Route::post('/test', 'DropZoneController@submit');
 Route::post('/fu', 'DropZoneController@fileUpload');
 Route::post('/fr', 'DropZoneController@fileRemove');
